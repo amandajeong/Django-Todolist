@@ -1,24 +1,61 @@
-<link rel="stylesheet">
+{%  extends 'base.html' %}
 
-<form method="POST" action="/">
-    {% csrf_token %}
-    {{ form.title }}
-    <input type="Submit" value="Create">
-</form>
+{% block content %}
+    <div class="container">
+        <form class="col s12">
+            {% csrf_token %}
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row">
+                <div class="input-field col s10">
+                    {{ form.title }}
+                </div>
+                <div class="col s2">
+                    <button class="btn-large waves-effect waves-light" type="submit" name="action">Create
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </form>
 
-{% for task in tasks %}
-    <div>
-        <a href="{% url 'update_task' task.id%}">Update</a>
-        <a href="{% url 'delete' task.id %}">Delete</a>
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th>Task Name</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
 
-        {% if task.complete == True %}
-            <span style="text-decoration: line-through;">{{ task }}</span>
-        {% elif task.in_the_past %}
-            <span style="color:#c60000">{{ task }}</span>
-        {% elif task.urgent %}
-            <span style="font-style:italic; font-weight:bold">{{ task }}!</span>
-        {% else %}
-            <span>{{ task }}</span>
-        {% endif %}
+            <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>
+                        <a href="{% url 'update_task' task.id%}">Update</a>
+                        <span style="display:inline-block; width: YOURWIDTH;"></span>
+                        <span style="display:inline-block; width: YOURWIDTH;"></span>
+                        <a href="{% url 'delete' task.id %}">Delete</a>
+                    </td>
+
+                    <td>
+                    {% if task.complete == True %}
+                        <span style="text-decoration: line-through;">{{ task }}</span>
+                    {% elif task.in_the_past %}
+                        <span style="color:#c60000">{{ task }}</span>
+                    {% elif task.urgent %}
+                        <span style="font-style:italic; font-weight:bold">{{ task }}!</span>
+                    {% else %}
+                        <span>{{ task }}</span>
+                    {% endif %}
+                    </td>
+
+                    <td>
+                        {{ task.due_date }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
-{% endfor %}
+
+{% endblock %}

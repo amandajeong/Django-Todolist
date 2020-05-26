@@ -1,8 +1,15 @@
-<p>Are you sure you want to delete "{{ item }}?</p>
+{%  extends 'base.html' %}
 
-<a href="{% url 'list' %}">Cancel</a>
+{% block content %}
 
-<form method="POST" action="">
-    {% csrf_token %}
-    <input type="submit" value="Confirm">
-</form>
+    <div class="container">
+        <p>Are you sure you want to delete "{{ item }}?</p>
+
+        <a href="{% url 'list' %}">Cancel</a>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input type="submit" value="Confirm">
+        </form>
+    </div>
+{% endblock %}

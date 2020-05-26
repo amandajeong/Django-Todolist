@@ -21,6 +21,6 @@ class Task(models.Model):
     def urgent(self):
         if self.due_date is not None:
             remaining = self.due_date - date.today()
-            return remaining == timedelta(days=1)
+            return remaining <= timedelta(days=1)
         else:
             return False

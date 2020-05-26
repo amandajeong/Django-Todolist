@@ -9,8 +9,12 @@ class Taskform(ModelForm):
         'placeholder': 'Add new task...'
     }))
 
-    due_date = forms.DateField(widget=forms.SelectDateWidget, required=False)
+    due_date = forms.DateField(required=False, widget=forms.DateInput(attrs={'class': 'datepicker'}))
 
     class Meta:
         model = Task
-        fields = '__all__'
+        fields = {
+            'title': Task.title,
+            'due_date': Task.due_date,
+            'complete': Task.complete
+            }
