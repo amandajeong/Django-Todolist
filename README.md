@@ -22,3 +22,4 @@ To resolve the issue with BooleanField:
 ```
 
 were added to style at the head of base.html
+(solution provided by grekpg from https://github.com/Dogfalo/materialize/issues/1376)
