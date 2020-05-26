@@ -12,7 +12,11 @@
         <a href="{% url 'delete' task.id %}">Delete</a>
 
         {% if task.complete == True %}
-            <strike>{{ task }}</strike>
+            <span style="text-decoration: line-through;">{{ task }}</span>
+        {% elif task.in_the_past %}
+            <span style="color:#c60000">{{ task }}</span>
+        {% elif task.urgent %}
+            <span style="font-style:italic; font-weight:bold">{{ task }}!</span>
         {% else %}
             <span>{{ task }}</span>
         {% endif %}
