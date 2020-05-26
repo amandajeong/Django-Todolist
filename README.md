@@ -11,7 +11,7 @@ Wanted to practice by personalizing and customizing different functionalities an
 Using Materialize CSS, form rendering don't sync well.
 To resolve the issue with BooleanField:
 
-'''
+```
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
     position: static!important;
     left: 0px!important;
@@ -19,6 +19,6 @@ To resolve the issue with BooleanField:
     visibility: visible!important;
     pointer-events: all!important;
 }
-'''
+```
 
 were added to style at the head of base.html
